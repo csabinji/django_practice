@@ -1,0 +1,42 @@
+# Ignore compiled Python files
+*.pyc
+*.pyo
+__pycache__/
+
+# Ignore local development settings
+config/settings_local.py
+
+# Ignore sensitive or environment-specific files
+.env
+
+# Ignore static and media files (should be collected separately in production)
+static/
+media/
+
+# Ignore database files
+*.sqlite3
+
+# Ignore generated files
+*.pyc
+*.pyo
+*.class
+
+# Ignore IDE or editor specific files
+.vscode/
+.idea/
+*.sublime-*
+*.swp
+
+# Ignore logs
+*.log
+logs/
+
+# Ignore dependencies managed by package managers
+venv/
+node_modules/
+
+# Ignore compiled assets or build directories
+assets/
+build/
+
+# Ignore any other project-specific files or directories
