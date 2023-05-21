@@ -4,8 +4,13 @@ from rest_framework.response import Response
 from rest_framework import serializers, status
 from .models import Product
 from .serializers import ProductSerializer
+from knox.auth import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import authentication_classes, permission_classes
 
 @api_view(['POST'])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def product_create(request):
     serializer = ProductSerializer(data=request.data)
     serializer.is_valid(raise_exception=True)
@@ -18,6 +23,8 @@ def product_create(request):
 
 
 @api_view(['GET'])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def list_products(request):
     query_params = request.query_params.dict()
     
@@ -34,6 +41,8 @@ def list_products(request):
 
 
 @api_view(['GET'])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def get_product(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     serializer = ProductSerializer(product)
@@ -41,6 +50,8 @@ def get_product(request, product_id):
 
 
 @api_view(['PUT'])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def update_product(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     serializer = ProductSerializer(product, data=request.data)
@@ -50,6 +61,8 @@ def update_product(request, product_id):
 
 
 @api_view(['DELETE'])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def delete_product(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     product.delete()
